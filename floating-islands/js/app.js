@@ -1,1 +1,2 @@
-// kickstart your world here
+import Island from "../js/classes/Island.js";
+import World from "../js/classes/World.js";
