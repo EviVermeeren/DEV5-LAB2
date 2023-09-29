@@ -11,34 +11,18 @@ export default class Island {
   }
 
   getRandomColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-  }
-
-  remove() {
-    // JS animations api, fade out
-    // remove the element when the animation ended
+    const color1 = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    const color2 = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return `linear-gradient(45deg, ${color1}, ${color2})`;
   }
 
   getRandomName() {
-    // array with 10 random island names
-    const names = [
-      "Palmtree beach",
-      "Sandy beach",
-      "Tropical beach",
-      "Palm beach",
-      "Sunny beach",
-      "Paradise beach",
-      "Sunny island",
-      "Tropical island",
-      "Palm island",
-      "Paradise island",
-    ];
+    const names = ["👩🏻", "👨🏻", "👩🏼", "👨🏼", "👩🏼‍🦰", "👨🏼‍🦰", "🤶🏼", "🎅🏼", "🧘🏽‍♀️", "👩🏽‍🚀"];
 
     const randomIndex = Math.floor(Math.random() * names.length);
     return names[randomIndex];
-
-    // return a random name from the array
   }
+
   render() {
     const islandElement = document.createElement("div");
     islandElement.classList.add("island");
