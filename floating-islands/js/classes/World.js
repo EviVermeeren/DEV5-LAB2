@@ -2,12 +2,12 @@ import Island from "./Island.js";
 
 class World {
   constructor() {
-    this.islands = []; // a good place to keep track of your islands
-    this.hookEvents(); // let's kick things of by hooking up events
+    this.islands = [];
+    this.hookEvents();
+    this.load();
   }
 
   hookEvents() {
-    // hook events like clicking buttons to a specific function
     document.getElementById("btnSave").addEventListener("click", () => {
       this.save();
       console.log("savedIsClicked");
@@ -17,25 +17,25 @@ class World {
       this.loadAndRenderIslands();
       console.log("loadIsClicked");
     });
+
+    document.getElementById("btnDelete").addEventListener("click", () => {
+      this.delete();
+      console.log("deleteIsClicked");
+    });
   }
 
   save() {
-    const savedIslands = localStorage.getItem("islands");
-    if (savedIslands) {
-      const parsedIslands = JSON.parse(savedIslands);
-      console.log("Islands loaded from localStorage.");
-      console.log(parsedIslands);
+    if (this.islands.length > 0) {
+      const savedIslands = this.islands.map((island) => ({
+        name: island.name,
+        color: island.color,
+        coordinates: island.coordinates,
+      }));
 
-      parsedIslands.forEach((islandData) => {
-        const { name, color, coordinates } = islandData;
-        const island = new Island(coordinates);
-        island.name = name;
-        island.color = color;
-        island.render();
-        this.islands.push(island);
-      });
+      localStorage.setItem("islands", JSON.stringify(savedIslands));
+      console.log("Islands saved to localStorage.");
     } else {
-      console.warn("No saved islands found in localStorage.");
+      console.warn("No islands to save.");
     }
   }
 
@@ -70,8 +70,13 @@ class World {
     }
   }
 
+  delete() {
+    localStorage.removeItem("islands");
+    console.log("Islands deleted from localStorage.");
+    location.reload();
+  }
+
   getCoordinates() {
-    // return coordinates within the screen at random, feel free to change it up!
     let randomSign = Math.random() < 0.5 ? -1 : 1;
     return {
       x: ((Math.random() * window.innerWidth) / 2) * randomSign,
@@ -85,10 +90,6 @@ class World {
 
     island.render();
     this.islands.push(island);
-  }
-
-  moveIsland(island) {
-    // this might be a good point to animate the islands with JS Animations API
   }
 }
 
