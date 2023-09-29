@@ -57,9 +57,9 @@ export default class World {
       console.log(parsedIslands);
 
       parsedIslands.forEach((islandData) => {
-        const { image, coordinates } = islandData; // Include the image property
+        const { image, coordinates } = islandData;
         const island = new Island(coordinates);
-        island.image = image; // Set the image property
+        island.image = image;
         island.render();
         this.islands.push(island);
       });
@@ -80,8 +80,10 @@ export default class World {
 
     const minX = itemWidth / 2;
     const maxX = window.innerWidth - itemWidth / 2;
+
+    const maxY = window.innerHeight - itemHeight / 2 - 200;
+
     const minY = itemHeight / 2;
-    const maxY = window.innerHeight - itemHeight / 2;
 
     const x = minX + Math.random() * (maxX - minX);
     const y = minY + Math.random() * (maxY - minY);
