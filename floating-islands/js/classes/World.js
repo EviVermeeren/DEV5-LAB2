@@ -79,7 +79,7 @@ export default class World {
     const itemHeight = 100;
 
     const minX = itemWidth / 2;
-    const maxX = window.innerWidth - itemWidth / 2;
+    const maxX = window.innerWidth - itemWidth / 2 - 50;
 
     const maxY = window.innerHeight - itemHeight / 2 - 200;
 
