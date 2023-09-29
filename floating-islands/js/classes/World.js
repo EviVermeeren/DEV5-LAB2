@@ -8,11 +8,25 @@ class World {
 
   hookEvents() {
     // hook events like clicking buttons to a specific function
+    document.getElementById("btnSave").addEventListener("click", () => {
+      this.save();
+      console.log("savedIsClicked");
+    });
   }
 
   save() {
-    // save array islands to localstorage as string
-    // loop over all this.islands and save the names
+    if (this.islands.length > 0) {
+      const savedIslands = this.islands.map((island) => ({
+        name: island.name,
+        color: island.color,
+        coordinates: island.coordinates,
+      }));
+
+      localStorage.setItem("islands", JSON.stringify(savedIslands));
+      console.log("Islands saved to localStorage.");
+    } else {
+      console.warn("No islands to save.");
+    }
   }
 
   load() {
