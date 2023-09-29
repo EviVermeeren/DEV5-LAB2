@@ -97,5 +97,6 @@ export default class World {
 
     island.render();
     this.islands.push(island);
+    island.animate();
   }
 }

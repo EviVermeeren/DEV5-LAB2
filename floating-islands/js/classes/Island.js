@@ -32,5 +32,17 @@ export default class Island {
 
     this.element = islandElement;
     document.getElementById("app").appendChild(islandElement);
+
+    //animate the island to bounce up and down using JS web animations API
+    const keyframes = [
+      { transform: "translateY(0px)" },
+      { transform: "translateY(-10px)" },
+      { transform: "translateY(0px)" },
+    ];
+    const options = {
+      duration: 1000,
+      iterations: Infinity,
+    };
+    islandElement.animate(keyframes, options);
   }
 }
