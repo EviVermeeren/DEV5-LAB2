@@ -1,3 +1,5 @@
+import Island from "./Island.js";
+
 class World {
   constructor() {
     this.islands = []; // a good place to keep track of your islands
@@ -23,15 +25,21 @@ class World {
     let randomSign = Math.random() < 0.5 ? -1 : 1;
     return {
       x: ((Math.random() * window.innerWidth) / 2) * randomSign,
-      y: ((Math.random() * window.innerHeight) / 2) * randomSign
+      y: ((Math.random() * window.innerHeight) / 2) * randomSign,
     };
   }
 
-  addIsland(island) {
-    // add the islands to the DOM
+  addIsland() {
+    const coordinates = this.getCoordinates();
+    const island = new Island(coordinates);
+
+    island.render();
+    this.islands.push(island);
   }
 
   moveIsland(island) {
     // this might be a good point to animate the islands with JS Animations API
   }
 }
+
+export default World;
