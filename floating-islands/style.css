@@ -1,6 +1,10 @@
 body {
   overflow: hidden;
   height: 100vh;
+  background-image: url("../floating-islands/media/bgi.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .island {
