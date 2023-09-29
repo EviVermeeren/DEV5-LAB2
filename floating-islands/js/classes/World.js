@@ -77,11 +77,18 @@ export default class World {
   }
 
   getCoordinates() {
-    let randomSign = Math.random() < 0.5 ? -1 : 1;
-    return {
-      x: ((Math.random() * window.innerWidth) / 2) * randomSign,
-      y: ((Math.random() * window.innerHeight) / 2) * randomSign,
-    };
+    const itemWidth = 100;
+    const itemHeight = 100;
+
+    const minX = itemWidth / 2;
+    const maxX = window.innerWidth - itemWidth / 2;
+    const minY = itemHeight / 2;
+    const maxY = window.innerHeight - itemHeight / 2;
+
+    const x = minX + Math.random() * (maxX - minX);
+    const y = minY + Math.random() * (maxY - minY);
+
+    return { x, y };
   }
 
   addIsland() {
