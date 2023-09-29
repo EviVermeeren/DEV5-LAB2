@@ -3,7 +3,6 @@ export default class Island {
     this.name = this.getRandomName();
     this.color = this.getRandomColor();
     this.coordinates = coordinates || { x: 0, y: 0 };
-    this.element = null;
   }
 
   getName() {
