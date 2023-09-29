@@ -1,6 +1,6 @@
 import Island from "./Island.js";
 
-class World {
+export default class World {
   constructor() {
     this.islands = [];
     this.hookEvents();
@@ -92,5 +92,3 @@ class World {
     this.islands.push(island);
   }
 }
-
-export default World;
