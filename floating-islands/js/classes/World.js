@@ -12,26 +12,62 @@ class World {
       this.save();
       console.log("savedIsClicked");
     });
+
+    document.getElementById("btnLoad").addEventListener("click", () => {
+      this.loadAndRenderIslands();
+      console.log("loadIsClicked");
+    });
   }
 
   save() {
-    if (this.islands.length > 0) {
-      const savedIslands = this.islands.map((island) => ({
-        name: island.name,
-        color: island.color,
-        coordinates: island.coordinates,
-      }));
+    const savedIslands = localStorage.getItem("islands");
+    if (savedIslands) {
+      const parsedIslands = JSON.parse(savedIslands);
+      console.log("Islands loaded from localStorage.");
+      console.log(parsedIslands);
 
-      localStorage.setItem("islands", JSON.stringify(savedIslands));
-      console.log("Islands saved to localStorage.");
+      parsedIslands.forEach((islandData) => {
+        const { name, color, coordinates } = islandData;
+        const island = new Island(coordinates);
+        island.name = name;
+        island.color = color;
+        island.render();
+        this.islands.push(island);
+      });
     } else {
-      console.warn("No islands to save.");
+      console.warn("No saved islands found in localStorage.");
     }
   }
 
   load() {
-    // load islands from localstorage into array
-    // loop over the array and addIslands()
+    const savedIslands = localStorage.getItem("islands");
+    if (savedIslands) {
+      this.islands = JSON.parse(savedIslands);
+      console.log("Islands loaded from localStorage.");
+      console.log(this.islands);
+    } else {
+      console.warn("No saved islands found in localStorage.");
+    }
+  }
+
+  loadAndRenderIslands() {
+    const savedIslands = localStorage.getItem("islands");
+    if (savedIslands) {
+      const parsedIslands = JSON.parse(savedIslands);
+      console.log("Islands loaded from localStorage.");
+      console.log(parsedIslands);
+
+      parsedIslands.forEach((islandData) => {
+        const { name, color, coordinates } = islandData;
+        const island = new Island(coordinates);
+        island.name = name;
+        island.color = color;
+        island.render();
+        this.islands.push(island);
+      });
+    } else {
+      console.warn("No saved islands found in localStorage.");
+    }
   }
 
   getCoordinates() {
