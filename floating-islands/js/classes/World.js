@@ -27,7 +27,7 @@ export default class World {
   save() {
     if (this.islands.length > 0) {
       const savedIslands = this.islands.map((island) => ({
-        color: island.color,
+        image: island.image, // Include the image property
         coordinates: island.coordinates,
       }));
 
@@ -57,9 +57,9 @@ export default class World {
       console.log(parsedIslands);
 
       parsedIslands.forEach((islandData) => {
-        const { color, coordinates } = islandData;
+        const { image, coordinates } = islandData; // Include the image property
         const island = new Island(coordinates);
-        island.color = color;
+        island.image = image; // Set the image property
         island.render();
         this.islands.push(island);
       });
