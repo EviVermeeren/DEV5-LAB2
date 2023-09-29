@@ -7,7 +7,11 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: linear-gradient(45deg, #cad299, #f0e734);
+  background: url("../floating-islands/media/blue.png");
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;

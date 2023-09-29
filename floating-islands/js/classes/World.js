@@ -27,7 +27,6 @@ export default class World {
   save() {
     if (this.islands.length > 0) {
       const savedIslands = this.islands.map((island) => ({
-        name: island.name,
         color: island.color,
         coordinates: island.coordinates,
       }));
@@ -58,9 +57,8 @@ export default class World {
       console.log(parsedIslands);
 
       parsedIslands.forEach((islandData) => {
-        const { name, color, coordinates } = islandData;
+        const { color, coordinates } = islandData;
         const island = new Island(coordinates);
-        island.name = name;
         island.color = color;
         island.render();
         this.islands.push(island);
@@ -97,6 +95,5 @@ export default class World {
 
     island.render();
     this.islands.push(island);
-    island.animate();
   }
 }

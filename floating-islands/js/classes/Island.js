@@ -1,31 +1,32 @@
 export default class Island {
   constructor(coordinates) {
-    this.name = this.getRandomName();
-    this.color = this.getRandomColor();
+    this.image = this.getRandomImageURL();
     this.coordinates = coordinates || { x: 0, y: 0 };
   }
 
-  getName() {
-    return this.name;
-  }
+  getRandomImageURL() {
+    const imageUrls = [
+      "./media/blue.png",
+      "./media/bulb.png",
+      "./media/charm.png",
+      "./media/eve.png",
+      "./media/mon.png",
+      "./media/muewt.png",
+      "./media/pika.png",
+      "./media/pok.png",
+      "./media/puff.png",
+      "./media/worm.png",
+    ];
 
-  getRandomColor() {
-    const color1 = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-    const color2 = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-    return `linear-gradient(45deg, ${color1}, ${color2})`;
-  }
-
-  getRandomName() {
-    const names = ["👩🏻", "👨🏻", "👩🏼", "👨🏼", "👩🏼‍🦰", "👨🏼‍🦰", "🤶🏼", "🎅🏼", "🧘🏽‍♀️", "👩🏽‍🚀"];
-
-    const randomIndex = Math.floor(Math.random() * names.length);
-    return names[randomIndex];
+    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    return imageUrls[randomIndex];
   }
 
   render() {
     const islandElement = document.createElement("div");
     islandElement.classList.add("island");
-    islandElement.style.background = this.color;
+    islandElement.style.backgroundImage = `url(${this.image})`;
+
     islandElement.style.left = this.coordinates.x + "px";
     islandElement.style.top = this.coordinates.y + "px";
     islandElement.textContent = this.name;
